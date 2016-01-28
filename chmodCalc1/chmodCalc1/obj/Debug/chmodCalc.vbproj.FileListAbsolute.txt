@@ -1,0 +1,11 @@
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\bin\Debug\chmodCalc.exe.config
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\bin\Debug\chmodCalc.exe
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\bin\Debug\chmodCalc.pdb
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\bin\Debug\chmodCalc.xml
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.vbprojResolveAssemblyReference.cache
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.Resources.resources
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.vbproj.GenerateResource.Cache
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.exe
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.xml
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.pdb
+C:\Users\idch-hjn\AppData\Local\Temporary Projects\chmodCalc\obj\Debug\chmodCalc.frmMain.resources
