@@ -12,4 +12,5 @@ This is a small chmod Calculator for Windows
 
 #ToDo
 - Output the rwx command
+- comment the code^^
 
