@@ -1,6 +1,8 @@
 # chmod-Calculator
 This is a small chmod Calculator for Windows
 
+![Screenshot](http://i.imgur.com/HQWlcJg.png)
+
 #Features
 - Check the premissions you want to give.
 - Get the octal premissions
