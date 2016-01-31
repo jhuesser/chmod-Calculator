@@ -11,6 +11,7 @@ This is a small chmod Calculator for Windows
 - copy the command to the clipboard
 
 #ToDo
-- Output the rwx command
+- Add leading zero
+- rewrite code (styling)
 - comment the code^^
 
