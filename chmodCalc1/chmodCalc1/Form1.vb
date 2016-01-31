@@ -5,6 +5,12 @@
         Public txtRights As String
     End Structure
 
+    Public Structure textRights
+        Public user As String
+        Public group As String
+        Public other As String
+    End Structure
+
 
     Private Sub chkUserRead_CheckedChanged(sender As Object, e As EventArgs) Handles chkUserRead.CheckedChanged
         CalcOct()
@@ -62,7 +68,7 @@
         Dim OctUser As ChmodRights
         Dim OctGroup As ChmodRights
         Dim OctOther As ChmodRights
-
+        Dim finalRights As textRights
 
 
         OctUser = valUser()
@@ -79,7 +85,36 @@
         txtRwx.Text = FileRights.txtRights
 
         txtOctCommand.Text = "sudo chmod " & FileRights.octRights & " "
-        txtrwxCmd.Text = "currently not supported"
+
+        finalRights.user = cutRights(OctUser.txtRights)
+        finalRights.group = cutRights(OctGroup.txtRights)
+        finalRights.other = cutRights(OctOther.txtRights)
+
+        If finalRights.user IsNot "" And finalRights.group IsNot "" And finalRights.other IsNot "" Then
+            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " g+" & finalRights.group & " o+" & finalRights.other
+
+        ElseIf finalRights.user Is "" And finalRights.group IsNot "" And finalRights.other IsNot "" Then
+            txtrwxCmd.Text = "sudo chmod g+" & finalRights.group & " o+" & finalRights.other
+
+
+        ElseIf finalRights.user IsNot "" And finalRights.group Is "" And finalRights.other IsNot "" Then
+            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " o+" & finalRights.other
+
+        ElseIf finalRights.user IsNot "" And finalRights.group IsNot "" And finalRights.other Is "" Then
+            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " g+" & finalRights.group
+
+        ElseIf finalRights.user Is "" And finalRights.group Is "" And finalRights.other IsNot "" Then
+            txtrwxCmd.Text = "sudo chmod o+" & finalRights.other
+
+        ElseIf finalRights.user Is "" And finalRights.group IsNot "" And finalRights.other Is "" Then
+            txtrwxCmd.Text = "sudo chmod g+" & finalRights.group
+
+        ElseIf finalRights.user IsNot "" And finalRights.group Is "" And finalRights.other Is "" Then
+            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user
+
+        End If
+
+
 
     End Function
 
@@ -264,6 +299,21 @@
 
     End Function
 
+    Private Function cutRights(Rights As String)
+
+
+
+        Rights = Rights.Replace("-", "")
+
+
+        Return Rights
+
+
+
+
+    End Function
+
+
     Private Sub btnOct_Click(sender As Object, e As EventArgs) Handles btnOct.Click
         Clipboard.SetText(txtOctal.Text)
     End Sub
@@ -279,4 +329,6 @@
     Private Sub btnrwxCmd_Click(sender As Object, e As EventArgs) Handles btnrwxCmd.Click
         Clipboard.SetText(txtrwxCmd.Text)
     End Sub
+
+
 End Class

@@ -256,7 +256,6 @@ Partial Class frmMain
         '
         'btnrwxCmd
         '
-        Me.btnrwxCmd.Enabled = False
         Me.btnrwxCmd.Location = New System.Drawing.Point(291, 231)
         Me.btnrwxCmd.Name = "btnrwxCmd"
         Me.btnrwxCmd.Size = New System.Drawing.Size(75, 23)
