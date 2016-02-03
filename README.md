@@ -5,11 +5,7 @@
  
 ![Screenshot](http://i.imgur.com/HQWlcJg.png)
 
- #Features
- - Check the premissions you want to give.
- - Check the premissions you want to give.
- - Get the octal premissions
- - Get the octal premissions
+
 
 #Features
 - Check the premissions you want to give.
@@ -20,6 +16,5 @@
 
 #ToDo
 - Add leading zero
-- rewrite code (styling)
 - comment the code^^
 
