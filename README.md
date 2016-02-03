@@ -1,6 +1,15 @@
 # chmod-Calculator
-This is a fork of a small chmod Calculator for Windows.
-I updated the architecture to separate the logic from the presentation and cleaned up the design a little.
+ This is a small chmod Calculator for Windows
+
+ 
+ 
+![Screenshot](http://i.imgur.com/HQWlcJg.png)
+
+ #Features
+ - Check the premissions you want to give.
+ - Check the premissions you want to give.
+ - Get the octal premissions
+ - Get the octal premissions
 
 #Features
 - Check the premissions you want to give.
