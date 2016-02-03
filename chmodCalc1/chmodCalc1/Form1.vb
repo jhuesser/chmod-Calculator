@@ -1,317 +1,58 @@
 ﻿Public Class frmMain
 
-    Public Structure ChmodRights
-        Public octRights As Integer
-        Public txtRights As String
-    End Structure
-
-    Public Structure textRights
-        Public user As String
-        Public group As String
-        Public other As String
-    End Structure
-
+    '---------------------------------
+    '   Objects
+    '---------------------------------
+    Private _calc As CoreComps
+    '----------------------------------
 
     Private Sub chkUserRead_CheckedChanged(sender As Object, e As EventArgs) Handles chkUserRead.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
 
     End Sub
 
     Private Sub chkUserExecute_CheckedChanged(sender As Object, e As EventArgs) Handles chkUserExecute.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
 
     Private Sub chkUserWrite_CheckedChanged(sender As Object, e As EventArgs) Handles chkUserWrite.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
     Private Sub chkGroupRead_CheckedChanged(sender As Object, e As EventArgs) Handles chkGroupRead.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
     Private Sub chkGroupWrite_CheckedChanged(sender As Object, e As EventArgs) Handles chkGroupWrite.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
     Private Sub chkGroupExecute_CheckedChanged(sender As Object, e As EventArgs) Handles chkGroupExecute.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
 
 
     Private Sub chkEveryoneRead_CheckedChanged(sender As Object, e As EventArgs) Handles chkEveryoneRead.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
     Private Sub chkEveryoneWrite_CheckedChanged(sender As Object, e As EventArgs) Handles chkEveryoneWrite.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
 
     Private Sub chkEveryoneExecute_CheckedChanged(sender As Object, e As EventArgs) Handles chkEveryoneExecute.CheckedChanged
-        CalcOct()
+        _calc.CalcOct()
 
     End Sub
-
-
-    Public Function CalcOct() As ChmodRights
-
-        Dim FileRights As ChmodRights
-
-        Dim OctUser As ChmodRights
-        Dim OctGroup As ChmodRights
-        Dim OctOther As ChmodRights
-        Dim finalRights As textRights
-
-
-        OctUser = valUser()
-
-
-        OctGroup = valGroup()
-
-        OctOther = valOther()
-
-        FileRights.octRights = OctUser.octRights & OctGroup.octRights & OctOther.octRights
-        txtOctal.Text = FileRights.octRights
-
-        FileRights.txtRights = OctUser.txtRights & OctGroup.txtRights & OctOther.txtRights
-        txtRwx.Text = FileRights.txtRights
-
-        txtOctCommand.Text = "sudo chmod " & FileRights.octRights & " "
-
-        finalRights.user = cutRights(OctUser.txtRights)
-        finalRights.group = cutRights(OctGroup.txtRights)
-        finalRights.other = cutRights(OctOther.txtRights)
-
-        If finalRights.user IsNot "" And finalRights.group IsNot "" And finalRights.other IsNot "" Then
-            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " g+" & finalRights.group & " o+" & finalRights.other
-
-        ElseIf finalRights.user Is "" And finalRights.group IsNot "" And finalRights.other IsNot "" Then
-            txtrwxCmd.Text = "sudo chmod g+" & finalRights.group & " o+" & finalRights.other
-
-
-        ElseIf finalRights.user IsNot "" And finalRights.group Is "" And finalRights.other IsNot "" Then
-            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " o+" & finalRights.other
-
-        ElseIf finalRights.user IsNot "" And finalRights.group IsNot "" And finalRights.other Is "" Then
-            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user & " g+" & finalRights.group
-
-        ElseIf finalRights.user Is "" And finalRights.group Is "" And finalRights.other IsNot "" Then
-            txtrwxCmd.Text = "sudo chmod o+" & finalRights.other
-
-        ElseIf finalRights.user Is "" And finalRights.group IsNot "" And finalRights.other Is "" Then
-            txtrwxCmd.Text = "sudo chmod g+" & finalRights.group
-
-        ElseIf finalRights.user IsNot "" And finalRights.group Is "" And finalRights.other Is "" Then
-            txtrwxCmd.Text = "sudo chmod u+" & finalRights.user
-
-        End If
-
-
-
-    End Function
-
-
-    Private Function valUser() As ChmodRights
-
-        Dim UserRead As Boolean
-        Dim UserWrite As Boolean
-        Dim userExecute As Boolean
-
-        Dim octUser As ChmodRights
-
-
-        If chkUserRead.Checked Then
-            UserRead = True
-        Else
-            UserRead = False
-        End If
-
-        If chkUserWrite.Checked Then
-            UserWrite = True
-        Else
-            UserWrite = False
-        End If
-
-        If chkUserExecute.Checked Then
-            userExecute = True
-        Else
-            userExecute = False
-        End If
-
-        octUser.octRights = 0
-        octUser.txtRights = ""
-        If UserRead = True Then
-            octUser.octRights = octUser.octRights + 4
-            octUser.txtRights = octUser.txtRights & "r"
-        Else
-            octUser.octRights = octUser.octRights + 0
-            octUser.txtRights = octUser.txtRights & "-"
-        End If
-
-        If UserWrite = True Then
-            octUser.octRights = octUser.octRights + 2
-            octUser.txtRights = octUser.txtRights & "w"
-        Else
-            octUser.octRights = octUser.octRights + 0
-            octUser.txtRights = octUser.txtRights & "-"
-        End If
-
-
-
-        If userExecute = True Then
-            octUser.octRights = octUser.octRights + 1
-            octUser.txtRights = octUser.txtRights & "x"
-        Else
-            octUser.octRights = octUser.octRights + 0
-            octUser.txtRights = octUser.txtRights & "-"
-
-        End If
-
-        Return OctUser
-
-
-    End Function
-
-    Private Function valGroup() As ChmodRights
-
-        Dim GroupRead As Boolean
-        Dim GroupWrite As Boolean
-        Dim GroupExecute As Boolean
-
-        Dim OctGroup As ChmodRights
-
-
-        If chkGroupRead.Checked Then
-            GroupRead = True
-
-        Else
-            GroupRead = False
-        End If
-
-        If chkGroupWrite.Checked Then
-            GroupWrite = True
-        Else
-            GroupWrite = False
-        End If
-
-        If chkGroupExecute.Checked Then
-            GroupExecute = True
-        Else
-            GroupExecute = False
-        End If
-
-        OctGroup.octRights = 0
-        OctGroup.txtRights = ""
-        If GroupRead = True Then
-            OctGroup.octRights = OctGroup.octRights + 4
-            OctGroup.txtRights = OctGroup.txtRights & "r"
-        Else
-            OctGroup.octRights = OctGroup.octRights + 0
-            OctGroup.txtRights = OctGroup.txtRights & "-"
-        End If
-
-        If GroupWrite = True Then
-            OctGroup.octRights = OctGroup.octRights + 2
-            OctGroup.txtRights = OctGroup.txtRights & "w"
-        Else
-            OctGroup.octRights = OctGroup.octRights + 0
-            OctGroup.txtRights = OctGroup.txtRights & "-"
-        End If
-
-        If GroupExecute = True Then
-            OctGroup.octRights = OctGroup.octRights + 1
-            OctGroup.txtRights = OctGroup.txtRights & "x"
-        Else
-            OctGroup.octRights = OctGroup.octRights + 0
-            OctGroup.txtRights = OctGroup.txtRights & "-"
-        End If
-
-        Return OctGroup
-
-
-    End Function
-
-
-    Private Function valOther() As ChmodRights
-
-        Dim OtherRead As Boolean
-        Dim OtherWrite As Boolean
-        Dim otherExecute As Boolean
-
-        Dim OctOther As ChmodRights
-
-        If chkEveryoneRead.Checked Then
-            OtherRead = True
-        Else
-            OtherRead = False
-        End If
-
-        If chkEveryoneWrite.Checked Then
-            OtherWrite = True
-        Else
-            OtherWrite = False
-        End If
-
-        If chkEveryoneExecute.Checked Then
-            otherExecute = True
-        Else
-            otherExecute = False
-        End If
-
-        OctOther.octRights = 0
-        OctOther.txtRights = ""
-
-        If OtherRead = True Then
-            OctOther.octRights = OctOther.octRights + 4
-            OctOther.txtRights = OctOther.txtRights & "r"
-        Else
-            OctOther.octRights = OctOther.octRights + 0
-            OctOther.txtRights = OctOther.txtRights & "-"
-        End If
-
-        If OtherWrite = True Then
-            OctOther.octRights = OctOther.octRights + 2
-            OctOther.txtRights = OctOther.txtRights & "w"
-        Else
-            OctOther.octRights = OctOther.octRights + 0
-            OctOther.txtRights = OctOther.txtRights & "-"
-        End If
-
-        If otherExecute = True Then
-            OctOther.octRights = OctOther.octRights + 1
-
-            OctOther.txtRights = OctOther.txtRights & "x"
-        Else
-            OctOther.octRights = OctOther.octRights + 0
-            OctOther.txtRights = OctOther.txtRights & "-"
-        End If
-
-        Return OctOther
-
-
-    End Function
-
-    Private Function cutRights(Rights As String)
-
-
-
-        Rights = Rights.Replace("-", "")
-
-
-        Return Rights
-
-
-
-
-    End Function
 
 
     Private Sub btnOct_Click(sender As Object, e As EventArgs) Handles btnOct.Click
@@ -330,5 +71,26 @@
         Clipboard.SetText(txtrwxCmd.Text)
     End Sub
 
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Create new Instance of calc
+        _calc = New CoreComps
 
+        ' Set its properties
+        ' Checkboxes
+        _calc.ChkEveryoneExecute = chkEveryoneExecute
+        _calc.ChkEveryoneRead = chkEveryoneRead
+        _calc.ChkEveryoneWrite = chkEveryoneWrite
+        _calc.ChkGroupExecute = chkGroupExecute
+        _calc.ChkGroupRead = chkGroupRead
+        _calc.ChkGroupWrite = chkGroupWrite
+        _calc.ChkUserExecute = chkUserExecute
+        _calc.ChkUserRead = chkUserRead
+        _calc.ChkUserWrite = chkUserWrite
+
+        ' Textboxes
+        _calc.TxtOctal = txtOctal
+        _calc.TxtOctCommand = txtOctCommand
+        _calc.TxtRwx = txtRwx
+        _calc.TxtrwxCmd = txtrwxCmd
+    End Sub
 End Class
