@@ -1,7 +1,11 @@
 # chmod-Calculator
-This is a small chmod Calculator for Windows
+ This is a small chmod Calculator for Windows
 
+ 
+ 
 ![Screenshot](http://i.imgur.com/HQWlcJg.png)
+
+
 
 #Features
 - Check the premissions you want to give.
@@ -11,5 +15,6 @@ This is a small chmod Calculator for Windows
 - copy the command to the clipboard
 
 #ToDo
-- Output the rwx command
+- Add leading zero
+- comment the code^^
 
