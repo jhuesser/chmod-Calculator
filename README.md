@@ -1,7 +1,6 @@
 # chmod-Calculator
-This is a small chmod Calculator for Windows
-
-![Screenshot](http://i.imgur.com/HQWlcJg.png)
+This is a fork of a small chmod Calculator for Windows.
+I updated the architecture to separate the logic from the presentation and cleaned up the design a little.
 
 #Features
 - Check the premissions you want to give.
